@@ -1,8 +1,26 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/manage/manage",
     "pages/logs/logs"
   ],
+  "tabBar": {
+    "selectedColor": "#E0620D",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "销售分析",
+        "iconPath": "./assets/sale-analysis.png",
+        "selectedIconPath": "./assets/sale-analysis-select.png"
+      },
+      {
+        "pagePath": "pages/manage/manage",
+        "text": "销售管理",
+        "iconPath": "./assets/sale-manage.png",
+        "selectedIconPath": "./assets/sale-manage-select.png"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

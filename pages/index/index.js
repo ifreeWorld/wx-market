@@ -1,54 +1,53 @@
 //index.js
 //获取应用实例
+const wxCharts = require('../../third/wxcharts-min.js')
 const app = getApp()
+let columnChart = null
 
 Page({
-  data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+  data: {},
+  onLoad: function() {
+    let windowWidth = 320
+    try {
+      const res = wx.getSystemInfoSync()
+      windowWidth = res.windowWidth
+      console.log('windowWidth', windowWidth)
+    } catch (e) {
+      console.error('getSystemInfoSync failed!')
+    }
+
+    wx.request({
+      url: 'https://www.freeworldl.club/market/getSaleAnalysisBar', // 仅为示例，并非真实的接口地址
+      // data: {
+      //   startMonth: '',
+      //   endMonth: ''
+      // },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        const response = res.data || {}
+        const data = response.data || []
+        console.log('res.data', data)
+
+        const categories = data.map(item => item.x)
+        const series = [{ name: '销售额', data: [] }]
+        series[0].data = data.map(item => item.y)
+        console.log('categories', categories)
+        console.log('series', series)
+
+        columnChart = new wxCharts({
+          canvasId: 'columnCanvas',
+          type: 'column',
+          categories,
+          series,
+          yAxis: {
+            min: 0
+          },
+          width: windowWidth,
+          height: 200
         })
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
   }
 })
