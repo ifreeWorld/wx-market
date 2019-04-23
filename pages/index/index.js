@@ -2,10 +2,34 @@
 //获取应用实例
 const wxCharts = require('../../third/wxcharts-min.js')
 const app = getApp()
+const date = new Date()
+const years = []
+const months = []
+
+for (let i = 1990; i <= date.getFullYear(); i++) {
+  years.push(i)
+}
+
+for (let i = 1; i <= 12; i++) {
+  months.push(i)
+}
 let columnChart = null
 
 Page({
-  data: {},
+  data: {
+    years,
+    year: date.getFullYear(),
+    months,
+    month: 2,
+    value: [9999, 1],
+  },
+  bindChange(e) {
+    const val = e.detail.value
+    this.setData({
+      year: this.data.years[val[0]],
+      month: this.data.months[val[1]]
+    })
+  },
   onLoad: function() {
     let windowWidth = 320
     try {
