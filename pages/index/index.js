@@ -22,6 +22,7 @@ Page({
     months,
     month: 2,
     value: [9999, 1],
+    show: true
   },
   bindChange(e) {
     const val = e.detail.value
@@ -41,7 +42,7 @@ Page({
     }
 
     wx.request({
-      url: 'https://www.freeworldl.club/market/getSaleAnalysisBar', // 仅为示例，并非真实的接口地址
+      url: 'https://www.freeworldl.club/market/getSaleAnalysisBar',
       // data: {
       //   startMonth: '',
       //   endMonth: ''
