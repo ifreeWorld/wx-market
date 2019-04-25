@@ -2,7 +2,7 @@
 <view class="container">
   <view class="title">销售额</view>
   <canvas canvas-id="columnCanvas" class="canvas"></canvas>
-  <view wx:hidden="{{show}}" class="mask">
+  <view wx:if="{{show}}" class="mask">
     <picker-view
       indicator-class="indicator"
       style="width: 100%; height: 300px;"
