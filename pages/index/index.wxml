@@ -1,32 +1,36 @@
 <!-- index.wxml -->
 <view class="container">
-  <view class="title">销售额</view>
-  <canvas canvas-id="columnCanvas" class="canvas"></canvas>
-  <view class="section">
+  <view class="card">
+    <view class="card-total">总销售额：¥{{total}}</view>
+    <view class="card-average">日均销售额：¥{{average}}</view>
+  </view>
+  <view class="date-select">
     <picker
+      style="display:inline-block"
       mode="date"
       fields="month"
       value="{{startMonth}}"
       start="{{start}}"
-      end="{{end}}"
+      end="{{endMonth}}"
       bindchange="bindStartChange"
     >
       <view class="picker">
-        <input maxlength="10" placeholder="请输入开始月份" />
-        当前选择: {{startMonth}}
+        {{startMonth}}
       </view>
     </picker>
     <picker
+      style="display:inline-block"
       mode="date"
       fields="month"
       value="{{endMonth}}"
-      start="{{start}}"
+      start="{{startMonth}}"
       end="{{end}}"
       bindchange="bindEndChange"
     >
       <view class="picker">
-        当前选择: {{endMonth}}
+        {{endMonth}}
       </view>
     </picker>
   </view>
+  <canvas canvas-id="columnCanvas" class="canvas"></canvas>
 </view>

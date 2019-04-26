@@ -7,41 +7,37 @@ let columnChart = null
 
 Page({
   data: {
+    windowWidth: 320,
     start: `${date.getFullYear()}-01`,
-    end: '2099-12',
+    end: '2100-01',
     startMonth: `${date.getFullYear()}-01`,
-    endMonth: `${date.getFullYear()}-12`
+    endMonth: `${date.getFullYear()}-12`,
+    total: 0,
+    average: 0
   },
   bindStartChange(e) {
     this.setData({
-      start: e.detail.value
+      startMonth: e.detail.value
     })
+    this.initBar()
   },
   bindEndChange(e) {
     this.setData({
-      end: e.detail.value
+      endMonth: e.detail.value
     })
+    this.initBar()
   },
-  onLoad: function() {
-    let windowWidth = 320
-    try {
-      const res = wx.getSystemInfoSync()
-      windowWidth = res.windowWidth
-      console.log('windowWidth', windowWidth)
-    } catch (e) {
-      console.error('getSystemInfoSync failed!')
-    }
-
+  initBar() {
     wx.request({
       url: 'https://www.freeworldl.club/market/getSaleAnalysisBar',
-      // data: {
-      //   startMonth: '',
-      //   endMonth: ''
-      // },
+      data: {
+        startMonth: this.data.startMonth,
+        endMonth: this.data.endMonth
+      },
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success(res) {
+      success: (res) => {
         const response = res.data || {}
         const data = response.data || []
         console.log('res.data', data)
@@ -60,10 +56,41 @@ Page({
           yAxis: {
             min: 0
           },
-          width: windowWidth,
+          width: this.data.windowWidth,
           height: 200
         })
       }
     })
+  },
+  initCard() {
+    wx.request({
+      url: 'https://www.freeworldl.club/market/getSaleAnalysisCard',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        const response = res.data || {}
+        const data = response.data || []
+        console.log('res.data', data)
+
+        this.setData({
+          average: parseInt(data.average),
+          total: parseInt(data.total)
+        })
+      }
+    })
+  },
+  onLoad: function() {
+    try {
+      const res = wx.getSystemInfoSync()
+      this.setData({
+        windowWidth: res.windowWidth
+      })
+      console.log('windowWidth', res.windowWidth)
+    } catch (e) {
+      console.error('getSystemInfoSync failed!')
+    }
+    this.initCard()
+    this.initBar()
   }
 })

@@ -1,25 +1,4 @@
 /**index.wxss**/
-/* .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-} */
-
 .title {
   font-size: 20px;
   font-weight: bold;
@@ -48,4 +27,39 @@
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.date-select {
+  text-align: center;
+  padding: 10rpx 0;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.picker {
+  width: 276rpx;
+  font-size: 15px;
+}
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20rpx 90rpx;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-title {
+
+}
+
+.card-total {
+
+}
+
+.card-average {
+
 }

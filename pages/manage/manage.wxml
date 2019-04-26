@@ -1,13 +1,24 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="add">
+    <image class="img" src="../../assets/add.png" />
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="weui-cells weui-cells_after-title">
+    <navigator wx:for="{{list}}" wx:key="{{item.key}}" url="" class="weui-cell weui-cell_access">
+      <view class="weui-cell__bd">{{item.date}}</view>
+      <view wx:if="{{item.total < 2000}}" class="weui-cell__ft weui-cell__ft_in-access lowTotal">
+        {{item.total}}
+      </view>
+      <view wx:elif="{{item.total >= 2000 && item.total < 4500}}" class="weui-cell__ft weui-cell__ft_in-access">
+        {{item.total}}
+      </view>
+      <view wx:else class="weui-cell__ft weui-cell__ft_in-access highTotal">{{item.total}}</view>
+    </navigator>
+    <!-- <view class="table-item-detail">
+        <view class="detail">收钱吧：{{item.collector}}</view>
+        <view class="detail">现金：{{item.cash}}</view>
+        <view class="detail">微信：{{item.wechat}}</view>
+        <view class="detail">支付宝：{{item.alipay}}</view>
+      </view> -->
   </view>
 </view>
