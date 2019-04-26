@@ -5,7 +5,7 @@
     "pages/logs/logs"
   ],
   "tabBar": {
-    "selectedColor": "#E0620D",
+    "selectedColor": "#52c41a",
     "list": [
       {
         "pagePath": "pages/index/index",
