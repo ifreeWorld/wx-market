@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/manage/manage",
+    "pages/test/test",
     "pages/logs/logs"
   ],
   "tabBar": {
@@ -16,6 +17,12 @@
       {
         "pagePath": "pages/manage/manage",
         "text": "销售管理",
+        "iconPath": "./assets/sale-manage.png",
+        "selectedIconPath": "./assets/sale-manage-select.png"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "text": "test",
         "iconPath": "./assets/sale-manage.png",
         "selectedIconPath": "./assets/sale-manage-select.png"
       }

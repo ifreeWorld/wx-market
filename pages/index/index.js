@@ -3,32 +3,23 @@
 const wxCharts = require('../../third/wxcharts-min.js')
 const app = getApp()
 const date = new Date()
-const years = []
-const months = []
-
-for (let i = 1990; i <= date.getFullYear(); i++) {
-  years.push(i)
-}
-
-for (let i = 1; i <= 12; i++) {
-  months.push(i)
-}
 let columnChart = null
 
 Page({
   data: {
-    years,
-    year: date.getFullYear(),
-    months,
-    month: 2,
-    value: [9999, 1],
-    show: true
+    start: `${date.getFullYear()}-01`,
+    end: '2099-12',
+    startMonth: `${date.getFullYear()}-01`,
+    endMonth: `${date.getFullYear()}-12`
   },
-  bindChange(e) {
-    const val = e.detail.value
+  bindStartChange(e) {
     this.setData({
-      year: this.data.years[val[0]],
-      month: this.data.months[val[1]]
+      start: e.detail.value
+    })
+  },
+  bindEndChange(e) {
+    this.setData({
+      end: e.detail.value
     })
   },
   onLoad: function() {
