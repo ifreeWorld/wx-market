@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/manage/manage",
+    "pages/form/form",
     "pages/logs/logs"
   ],
   "tabBar": {

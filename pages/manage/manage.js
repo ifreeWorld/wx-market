@@ -7,17 +7,23 @@ Page({
   data: {
     list: []
   },
-  onLoad: function () {
+  add: function() {
+    wx.navigateTo({
+      url: '/pages/form/form'
+    })
+  },
+  onShow: function() {
     wx.request({
       url: 'https://www.freeworldl.club/market/getSaleTableInfo',
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: (res) => {
+      success: res => {
         const response = res.data || {}
         const data = response.data || []
         console.log('res.data', data)
 
+        data.sort((a, b) => a.date < b.date ? 1 : -1)
         this.setData({
           list: data
         })

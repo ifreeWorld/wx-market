@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">日期</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="date" value="{{date}}" start="1900-01-01" end="2100-01-01" bindchange="bindDateChange">
+          <view class="weui-input">{{date}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="{{collectorError ? 'weui-cell weui-cell_input weui-cell_warn' : 'weui-cell weui-cell_input'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">收钱吧</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="number" value="{{collector}}" placeholder="请输入金额" bindinput="bindCollectorChange"/>
+      </view>
+      <view hidden="{{!collectorError}}" class="weui-cell__ft">
+        <icon type="warn" size="23" color="#E64340"></icon>
+      </view>
+    </view>
+    <view class="{{cashError ? 'weui-cell weui-cell_input weui-cell_warn' : 'weui-cell weui-cell_input'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">现金</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="number" value="{{cash}}" placeholder="请输入金额" bindinput="bindCashChange"/>
+      </view>
+      <view hidden="{{!cashError}}" class="weui-cell__ft">
+        <icon type="warn" size="23" color="#E64340"></icon>
+      </view>
+    </view>
+    <view class="{{wechatError ? 'weui-cell weui-cell_input weui-cell_warn' : 'weui-cell weui-cell_input'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">微信</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="number" value="{{wechat}}" placeholder="请输入金额" bindinput="bindWechatChange"/>
+      </view>
+      <view hidden="{{!wechatError}}" class="weui-cell__ft">
+        <icon type="warn" size="23" color="#E64340"></icon>
+      </view>
+    </view>
+    <view class="{{alipayError ? 'weui-cell weui-cell_input weui-cell_warn' : 'weui-cell weui-cell_input'}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">支付宝</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="number" value="{{alipay}}" placeholder="请输入金额" bindinput="bindAlipayChange"/>
+      </view>
+      <view hidden="{{!alipayError}}" class="weui-cell__ft">
+        <icon type="warn" size="23" color="#E64340"></icon>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="confirm" disabled="{{collectorError || cashError || wechatError || alipayError}}">保存</button>
+      <button wx:if="{{key !== 0}}" class="weui-btn" type="warn" bindtap="delete">删除</button>
+    </view>
+  </view>
+</view>

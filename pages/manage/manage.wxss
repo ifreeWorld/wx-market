@@ -1,5 +1,4 @@
 /**manage.wxss**/
-@import "../../third/weui.wxss";
 .weui-cells {
   width: 100%;
 }
