@@ -1,5 +1,6 @@
 //form.js
 //获取应用实例
+const baseUrl = require('../../utils/util.js').baseUrl
 const app = getApp()
 const now = getNowFormatDate()
 
@@ -46,8 +47,8 @@ Page({
       return
     }
     const url = this.data.key
-      ? 'https://www.freeworldl.club/market/updateSaleTableInfo'
-      : 'https://www.freeworldl.club/market/addSaleTableInfo'
+      ? `${baseUrl}/market/updateSaleTableInfo`
+      : `${baseUrl}/market/addSaleTableInfo`
     wx.request({
       url: url,
       header: {
@@ -95,7 +96,7 @@ Page({
         console.log(res)
         if (res.confirm) {
           wx.request({
-            url: 'https://www.freeworldl.club/market/deleteSaleTableInfo',
+            url: `${baseUrl}/market/deleteSaleTableInfo`,
             header: {
               'content-type': 'application/json' // 默认值
             },

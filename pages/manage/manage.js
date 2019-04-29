@@ -1,6 +1,7 @@
 //manage.js
 //获取应用实例
 const app = getApp()
+const baseUrl = require('../../utils/util.js').baseUrl
 const expectTotal = [2000, 4500]
 
 Page({
@@ -14,7 +15,7 @@ Page({
   },
   onShow: function() {
     wx.request({
-      url: 'https://www.freeworldl.club/market/getSaleTableInfo',
+      url: `${baseUrl}/market/getSaleTableInfo`,
       header: {
         'content-type': 'application/json' // 默认值
       },

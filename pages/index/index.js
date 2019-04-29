@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+const baseUrl = require('../../utils/util.js').baseUrl
 const wxCharts = require('../../third/wxcharts-min.js')
 const app = getApp()
 const date = new Date()
@@ -29,7 +30,7 @@ Page({
   },
   initBar() {
     wx.request({
-      url: 'https://www.freeworldl.club/market/getSaleAnalysisBar',
+      url: `${baseUrl}/market/getSaleAnalysisBar`,
       data: {
         startMonth: this.data.startMonth,
         endMonth: this.data.endMonth
@@ -64,7 +65,7 @@ Page({
   },
   initCard() {
     wx.request({
-      url: 'https://www.freeworldl.club/market/getSaleAnalysisCard',
+      url: `${baseUrl}/market/getSaleAnalysisCard`,
       header: {
         'content-type': 'application/json' // 默认值
       },
