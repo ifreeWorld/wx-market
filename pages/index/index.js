@@ -9,7 +9,7 @@ let columnChart = null
 Page({
   data: {
     windowWidth: 320,
-    start: `${date.getFullYear()}-01`,
+    start: `2019-01`,
     end: '2100-01',
     startMonth: `${date.getFullYear()}-01`,
     endMonth: `${date.getFullYear()}-12`,
@@ -43,23 +43,25 @@ Page({
         const data = response.data || []
         console.log('res.data', data)
 
-        const categories = data.map(item => item.x)
-        const series = [{ name: '销售额', data: [] }]
-        series[0].data = data.map(item => item.y)
-        console.log('categories', categories)
-        console.log('series', series)
+        if (data.length !== 0) {
+          const categories = data.map(item => item.x)
+          const series = [{ name: '销售额', data: [] }]
+          series[0].data = data.map(item => item.y)
+          console.log('categories', categories)
+          console.log('series', series)
 
-        columnChart = new wxCharts({
-          canvasId: 'columnCanvas',
-          type: 'column',
-          categories,
-          series,
-          yAxis: {
-            min: 0
-          },
-          width: this.data.windowWidth,
-          height: 200
-        })
+          columnChart = new wxCharts({
+            canvasId: 'columnCanvas',
+            type: 'column',
+            categories,
+            series,
+            yAxis: {
+              min: 0
+            },
+            width: this.data.windowWidth,
+            height: 200
+          })
+        }
       }
     })
   },
